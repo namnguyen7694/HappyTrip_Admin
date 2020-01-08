@@ -2,18 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +17,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -35,4 +30,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.manager__menu {
+  display: block;
+  margin: 10px;
+  text-decoration: none;
+}
+.login-page {
+  background-image: url(https:////static.vexere.com/production/banners/330/background-ok-optimize.png);
+  height: 1200px;
+  background-size: cover;
+  margin-top: -25px;
+}
+.login-page h1 {
+  padding-top: 100px;
+  color: #f2f4f2;
+}
+
+.MuiAppBar-colorPrimary {
+  color: #fff;
+  background-color: #7fda26cf !important;
+}
+.title_addnew {
+  color : #279093
 }
