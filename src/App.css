@@ -44,8 +44,12 @@
   margin-top: -25px;
 }
 .login-page h1 {
-  padding-top: 100px;
-  color: #f2f4f2;
+  padding-top: 50px;
+  color: #3b3f94;
+}
+.login-page h3 {
+  padding-top: 50px;
+  color: #3b3f94;
 }
 
 .MuiAppBar-colorPrimary {

@@ -16,7 +16,7 @@ class Navbar extends Component {
       <div>
         <AppBar position="static">
           <Toolbar>
-            <IconButton onClick={() => this.props.history.push("/manager")}>
+            <IconButton onClick={() => this.props.history.push("/")}>
               <img
                 src="https://storage.googleapis.com/fe-production/icon_vxr_full.svg"
                 alt="logo"

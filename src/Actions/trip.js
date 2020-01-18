@@ -19,7 +19,7 @@ export const getTripById = (id) => (dispatch) => {
             dispatch({
                 type: types.GET_TRIPBYID,
                 payload: res.data
-            })
+            });
             Promise.resolve(res.data)
         })
         .catch(err => Promise.reject(err))

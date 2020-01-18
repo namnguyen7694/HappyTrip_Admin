@@ -7,7 +7,8 @@ import Manager from './Components/Manager';
 import setAuthToken from './Components/Utils/setAuthToken';
 import {setCurrentUser} from './Actions/auth';
 import { connect } from 'react-redux';
-import PrivateRoute from './Components/Utils/PrivateRouter';
+import AdminRoute from './Components/Utils/AdminRoute';
+import ClientRoute from './Components/Utils/ClientRoute';
 import isAuthenticate from './Components/Utils/isAuthenticate';
 import Profile from './Components/Profile';
 import User from './Components/Manager/User';
@@ -21,6 +22,9 @@ import Trip from './Components/Manager/Trip/Trip';
 import AddTrip from './Components/Manager/Trip/AddTrip';
 import EditTrip from './Components/Manager/Trip/EditTrip';
 import Ticket from './Components/Manager/Ticket/Ticket';
+import Explore from './Components/Client/Explore'
+import BookingTicket from './Components/Client/BookingTicket';
+import NotFound from './Components/Utils/NotFound'
 
 class App extends Component {
   constructor(props) {
@@ -33,30 +37,39 @@ class App extends Component {
   
   render() {
     const {auth} = this.props;
-    const {isAuthenticate} = auth;
+    const {isAuthenticate, profile} = auth;
     return (
       <div className="App">
       <BrowserRouter>
         {isAuthenticate &&  <Navbar {...this.props}/>}
         <Switch>
           <Route path='/' exact render= {(props) => {
-            if (isAuthenticate) return <Redirect to='/manager'/>
+            if (isAuthenticate && profile.userType ==='admin') return <Redirect to='/manager'/>;
+            if (isAuthenticate && profile.userType ==='client') return <Explore {...props}/>;
+            return <Redirect to='/login'/>
+          }}
+          />
+          <Route path='/login' exact render= {(props) => {
+            if (isAuthenticate) return <Redirect to='/'/>
             return <Login {...props}/>
           }}
           />
-          <PrivateRoute path = '/manager' exact component = {Manager}/>
-          <PrivateRoute path = '/profile' exact component = {Profile}/>
-          <PrivateRoute path = '/manager/tickets' exact component = {Ticket}/>
-          <PrivateRoute path = '/manager/stations' exact component = {Station}/>
-          <PrivateRoute path = '/manager/stations/addstation' exact component = {AddStation}/>
-          <PrivateRoute path = '/manager/stations/:id/editstation' exact component = {EditStation}/>
-          <PrivateRoute path = '/manager/companies' exact component = {Company}/>
-          <PrivateRoute path = '/manager/companies/addcompany' exact component = {AddCompany}/>
-          <PrivateRoute path = '/manager/companies/:id/editcompany' exact component = {EditCompany}/>
-          <PrivateRoute path = '/manager/trips' exact component = {Trip}/>
-          <PrivateRoute path = '/manager/trips/addtrip' exact component = {AddTrip}/>
-          <PrivateRoute path = '/manager/trips/:id/edittrip' exact component = {EditTrip}/>
-          <PrivateRoute path = '/manager/users' exact component = {User}/>
+          <AdminRoute path = '/manager' exact component = {Manager}/>
+          <AdminRoute path = '/profile' exact component = {Profile}/>
+          <AdminRoute path = '/manager/tickets' exact component = {Ticket}/>
+          <AdminRoute path = '/manager/stations' exact component = {Station}/>
+          <AdminRoute path = '/manager/stations/addstation' exact component = {AddStation}/>
+          <AdminRoute path = '/manager/stations/:id/editstation' exact component = {EditStation}/>
+          <AdminRoute path = '/manager/companies' exact component = {Company}/>
+          <AdminRoute path = '/manager/companies/addcompany' exact component = {AddCompany}/>
+          <AdminRoute path = '/manager/companies/:id/editcompany' exact component = {EditCompany}/>
+          <AdminRoute path = '/manager/trips' exact component = {Trip}/>
+          <AdminRoute path = '/manager/trips/addtrip' exact component = {AddTrip}/>
+          <AdminRoute path = '/manager/trips/:id/edittrip' exact component = {EditTrip}/>
+          <AdminRoute path = '/manager/users' exact component = {User}/>
+          <ClientRoute path = '/bookticket/:tripId' exact component = {BookingTicket}/>
+          <Route path = '/*' component = {NotFound}/>
+          <Route path = '/notfound' component = {NotFound}/>
         </Switch>
       </BrowserRouter>
     </div>

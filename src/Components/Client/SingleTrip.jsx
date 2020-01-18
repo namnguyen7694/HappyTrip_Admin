@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {withRouter} from 'react-router-dom';
-import AlertDialog from '../../Utils/alertDialog'
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
+import BookingTicket from './BookingTicket';
 
 const useStyles = makeStyles({
   card: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 
 const SimpleCard = (props) => {
   const classes = useStyles();
-  const {trip} = props;
+  const {trip, tripEditing} = props;
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -42,31 +42,34 @@ const SimpleCard = (props) => {
           {trip.carType}
         </Typography>
         <Typography className={classes.detail} color="textSecondary">
-         Start Time: {trip.startTime}
+          Start Time: {trip.startTime}
         </Typography>
         <Typography className={classes.detail} color="textSecondary">
-          Số ghế trống: {trip.seats.filter( e => !e.isBooked).length} / {trip.seats.length}
-        </Typography>
-        <Typography className={classes.detail} color="textSecondary">
-          Ghế trống: {trip.seats.filter( e => !e.isBooked).map(e => e.code).join(", ")} 
+          Số ghế trống: {trip.seats.filter(e => !e.isBooked).length} /{" "}
+          {trip.seats.length}
         </Typography>
         <Typography color="textPrimary">
-          Ga đi :  {trip.fromStation.name}
+          Ga đi : {trip.fromStation.name}
         </Typography>
         <Typography color="textPrimary">
-          Ga đến :  {trip.toStation.name}
+          Ga đến : {trip.toStation.name}
         </Typography>
-        <Typography color="textPrimary">
-          Giá vé :  {trip.price}
-        </Typography>
-        
+        <Typography color="textPrimary">Giá vé : {trip.price}</Typography>
+
+        <CardActions>
+          <Button
+            size="small"
+            variant="contained"
+            style={{ marginLeft: "auto" }}
+            onClick={() =>
+              props.getTripById(trip._id)
+            }
+          >
+            Select Seat
+          </Button>
+          {tripEditing._id === trip._id ?  <BookingTicket tripId = {tripEditing._id }/> : ""}
+        </CardActions>
       </CardContent>
-      <CardActions >
-        <Button size="small" variant="contained" style={{marginLeft :  "auto"}}
-        onClick={ () => props.history.push(`/manager/trips/${trip._id}/edittrip`)}
-        >Edit Trip</Button>
-        <AlertDialog id={trip._id} deleteAction = {props.deleteTrip} type={"Trip"}/>
-      </CardActions>
     </Card>
   );
 }
