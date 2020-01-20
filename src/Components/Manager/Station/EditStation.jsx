@@ -30,6 +30,7 @@ class EditStation extends Component {
       name: "",
       province: "",
       address: "",
+      image : "",
       companies: [],
       List: [],
       error: {},
@@ -45,8 +46,8 @@ class EditStation extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, province, address, companies, _id } = this.state;
-    const data = { name, province, address, companies, _id };
+    const { name, province, address, image, companies, _id } = this.state;
+    const data = { name, province, address, image, companies, _id };
     this.props
       .updateStation(data)
       .then(() => this.props.history.push("/manager/stations"))
@@ -69,6 +70,7 @@ class EditStation extends Component {
           name: station.name,
           province: station.province,
           address: station.address,
+          image: station.image,
           _id: station._id,
           companies: companyId
         });
@@ -77,7 +79,7 @@ class EditStation extends Component {
   }
 
   render() {
-    const { name, address, province, companies, List } = this.state;
+    const { name, address, province, image, companies, List } = this.state;
     return (
       <div className="add_station">
         <h1> Edit Sation</h1>
@@ -125,6 +127,17 @@ class EditStation extends Component {
               name="province"
               value={province}
               label="Station province"
+              variant="outlined"
+              style={{ margin: "15px", width: "40%" }}
+              onChange={this.onChange}
+            />
+          </div>
+          <div>
+            <TextField
+              id="image"
+              name="image"
+              value={image}
+              label="Station image"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}

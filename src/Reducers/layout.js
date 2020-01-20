@@ -17,6 +17,9 @@ const layoutReducer = (state = initialState, action) => {
     case types.GET_TRIPBYID:
       return { ...state, tripEditing: action.payload };
 
+    case types.CANCEL_BOOKING:
+      return { ...state, tripEditing: {} };
+
     case types.GET_ADVICECOMPANY:
       return {...state, adviceCompany : action.payload}
     default:

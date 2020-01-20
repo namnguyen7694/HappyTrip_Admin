@@ -26,3 +26,9 @@ export const createTicket = data => dispatch => {
     })
     .catch(err => Promise.reject(err));
 };
+
+export const cancelBooking = () => dispatch => {
+    dispatch({
+      type: types.CANCEL_BOOKING
+    })
+  }

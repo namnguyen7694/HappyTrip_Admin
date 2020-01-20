@@ -35,6 +35,7 @@ class EditCompany extends Component {
     this.state = {
       name: "",
       carType: [],
+      image: "",
       stations: [],
       List: [],
       error: {},
@@ -50,8 +51,8 @@ class EditCompany extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, carType, stations, _id } = this.state;
-    const data = { name, carType, stations, _id };
+    const { name, carType, stations, image, _id } = this.state;
+    const data = { name, carType, stations, image, _id };
     this.props
       .updateCompany(data)
       .then(() => this.props.history.push("./../"))
@@ -74,13 +75,14 @@ class EditCompany extends Component {
         name: company.name,
         carType: company.carType,
         stations: stationId,
+        image: company.image,
         _id: company._id
       });
     });
   }
 
   render() {
-    const { name, carType, stations, List } = this.state;
+    const { name, carType, stations, List, image } = this.state;
     return (
       <div className="add_station">
         <h1>Edit Company</h1>
@@ -96,6 +98,18 @@ class EditCompany extends Component {
               name="name"
               value={name}
               label="Company Name"
+              variant="outlined"
+              style={{ margin: "15px", width: "40%" }}
+              onChange={this.onChange}
+            />
+          </div>
+
+          <div>
+            <TextField
+              id="image"
+              name="image"
+              value={image}
+              label="Company image"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}

@@ -42,7 +42,7 @@ const SimpleCard = (props) => {
           {trip.carType}
         </Typography>
         <Typography className={classes.detail} color="textSecondary">
-          Start Time: {trip.startTime}
+          Giờ khởi hành: {trip.startTime}
         </Typography>
         <Typography className={classes.detail} color="textSecondary">
           Số ghế trống: {trip.seats.filter(e => !e.isBooked).length} /{" "}
@@ -57,6 +57,7 @@ const SimpleCard = (props) => {
         <Typography color="textPrimary">Giá vé : {trip.price}</Typography>
 
         <CardActions>
+        {tripEditing._id === trip._id ?  <BookingTicket tripId = {trip._id }/> :
           <Button
             size="small"
             variant="contained"
@@ -65,9 +66,8 @@ const SimpleCard = (props) => {
               props.getTripById(trip._id)
             }
           >
-            Select Seat
-          </Button>
-          {tripEditing._id === trip._id ?  <BookingTicket tripId = {tripEditing._id }/> : ""}
+            {trip.seats.filter(e => !e.isBooked).length === 0 ? "Hết ghế " : "Chọn ghế"} 
+          </Button> }
         </CardActions>
       </CardContent>
     </Card>

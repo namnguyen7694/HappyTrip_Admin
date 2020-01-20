@@ -35,6 +35,7 @@ class AddCompany extends Component {
     this.state = {
       name: "",
       carType: [],
+      image: "",
       stations: [],
       List: [],
       error: {}
@@ -49,8 +50,8 @@ class AddCompany extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, carType, stations } = this.state;
-    const data = { name, carType, stations };
+    const { name, carType, stations, image } = this.state;
+    const data = { name, carType, stations, image };
     this.props
       .createCompany(data)
       .then(() => this.props.history.push("./"))
@@ -66,7 +67,7 @@ class AddCompany extends Component {
   }
 
   render() {
-    const { name, carType, stations, List } = this.state;
+    const { name, carType, stations, image, List } = this.state;
     return (
       <div className="add_station">
         <h1 className="title_addnew">Add Company</h1>
@@ -82,6 +83,18 @@ class AddCompany extends Component {
               name="name"
               value={name}
               label="Company Name"
+              variant="outlined"
+              style={{ margin: "15px", width: "40%" }}
+              onChange={this.onChange}
+            />
+          </div>
+
+          <div>
+            <TextField
+              id="image"
+              name="image"
+              value={image}
+              label="Company image"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}

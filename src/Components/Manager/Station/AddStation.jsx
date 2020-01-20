@@ -30,6 +30,7 @@ class AddStation extends Component {
       name: "",
       province: "",
       address: "",
+      image: "",
       companies: [],
       List: [],
       error: {}
@@ -44,8 +45,8 @@ class AddStation extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, province, address, companies } = this.state;
-    const data = { name, province, address, companies };
+    const { name, province, address, companies, image } = this.state;
+    const data = { name, province, address, companies, image };
     this.props
       .createStation(data)
       .then(() => this.props.history.push("./"))
@@ -61,7 +62,7 @@ class AddStation extends Component {
   }
 
   render() {
-    const { name, address, province, companies, List } = this.state;
+    const { name, address, province, companies, image, List } = this.state;
     return (
       <div className="add_station">
         <h1 className="title_addnew">Add Sation</h1>
@@ -109,6 +110,17 @@ class AddStation extends Component {
               name="province"
               value={province}
               label="Station province"
+              variant="outlined"
+              style={{ margin: "15px", width: "40%" }}
+              onChange={this.onChange}
+            />
+          </div>
+          <div>
+            <TextField
+              id="image"
+              name="image"
+              value={image}
+              label="Station image"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}

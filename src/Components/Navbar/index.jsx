@@ -26,7 +26,7 @@ class Navbar extends Component {
               {isAuthenticate ? "Da dang nhap" : "Chua dang nhap"}
             </Typography>
             <Typography variant="h6">
-              <Link to="/profile">{isAuthenticate ? profile.email : ""}</Link>
+              <Link to="/profile">{isAuthenticate ? profile.fullName : ""}</Link>
             </Typography>
 
             {isAuthenticate && (
