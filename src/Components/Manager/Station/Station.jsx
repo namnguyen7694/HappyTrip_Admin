@@ -17,7 +17,7 @@ class Station extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1 className="title_addnew">Stations Manager</h1>
+              <h1 className="title_addnew">QUẢN LÝ BẾN XE</h1>
               <Button
                 variant="contained"
                 color="primary"
@@ -25,7 +25,7 @@ class Station extends Component {
                   this.props.history.push("/manager/stations/addstation")
                 }
               >
-                Add New Station
+                Thêm Bến xe
               </Button>
               {this.props.stations.map((station, index) => {
                 return (

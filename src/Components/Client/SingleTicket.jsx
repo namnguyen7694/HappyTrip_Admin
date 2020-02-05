@@ -1,11 +1,10 @@
 import React from "react";
-import _ from 'lodash'
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import AlertDialog from "./../../Utils/alertDialog";
+import AlertDialog from "../Utils/alertDialog";
 import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles({
@@ -29,7 +28,7 @@ export default function SimpleCard(props) {
     <Card className={classes.card}>
       <CardContent>
         <Typography className={classes.pos} color="textPrimary">
-          Người đặt vé: {_.get(ticket, "userId.fullName", "Khác") }
+          Người đặt vé: {ticket.userId.fullName}
         </Typography>
         <Typography variant="h6" color="textSecondary">
           Mã số ghế: {ticket.seats.map(seat => seat.code).join(", ")}
@@ -51,7 +50,7 @@ export default function SimpleCard(props) {
         <div style={{ marginLeft: "auto" }}>
           <AlertDialog
             id={ticket._id}
-            deleteAction={props.deleteTicket}
+            deleteAction={props.deleteMyTicket}
             type={"Vé"}
           />
         </div>

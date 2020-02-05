@@ -6,14 +6,14 @@ class Explore extends Component {
   render() {
     return (
       <div>
-        <h3>Wellcome to Vexere.com</h3>
+        <h2>Chào mừng bạn đến Vexere.com</h2>
         <Button
           variant="contained"
           color="primary"
           style={{ margin: "15px" }}
           onClick={() => this.props.history.push('/ticketmanager')}
         >
-          Ticket Manager
+          Quản lý vé xe đã đặt
         </Button>
         <TripList />
       </div>

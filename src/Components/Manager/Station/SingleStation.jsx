@@ -13,22 +13,15 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
-    margin: 40
+    margin: 20
   },
 
   title: {
     color: "#6b8a78"
   },
-  info: {
-    marginBottom: 12
-  },
-  detail: {
-    marginBottom: 6,
-    color: "green"
-  },
   image: {
     width: 200,
-    height: 200
+    height: 160
   },
   img: {
     margin: "auto",
@@ -44,15 +37,15 @@ const SimpleCard = props => {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid container direction="row" justify="space-evenly" alignItems="flex-start">
           <Grid item md={6}>
-            <Typography variant="h4" className={classes.title} gutterBottom>
+            <Typography variant="h5" className={classes.title} gutterBottom>
               {station.name}
             </Typography>
             <Typography color="textSecondary">
               Địa chỉ : {station.address}
             </Typography>
-            <Typography className={classes.info} color="textSecondary">
+            <Typography color="textSecondary">
               Tỉnh : {station.province}
             </Typography>
             <ButtonBase className={classes.image}>
@@ -90,12 +83,12 @@ const SimpleCard = props => {
             props.history.push(`/manager/stations/${station._id}/editstation`)
           }
         >
-          Edit Station
+          Chỉnh sửa
         </Button>
         <AlertDialog
           id={station._id}
           deleteAction={props.deleteStation}
-          type={"Station"}
+          type={"Bến xe"}
         />
       </CardActions>
     </Card>

@@ -9,8 +9,15 @@ import {
 } from '@material-ui/pickers';   //npm i @material-ui/pickers
 
 export default function TimePicker(props) {
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const nowTime = new Date ();
+  const startTime = props.startTime || nowTime;
+  const [selectedDate, setSelectedDate] = React.useState(startTime);
+
+  React.useEffect( () => {
+    if (props.startTime ) {
+      setSelectedDate(startTime);
+    }
+}, [props.startTime, startTime])
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -23,7 +30,7 @@ export default function TimePicker(props) {
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
-          label="Date picker dialog"
+          label="Chọn ngày"
           format="MM/dd/yyyy"
           value={selectedDate}
           onChange={handleDateChange}
@@ -34,7 +41,7 @@ export default function TimePicker(props) {
         <KeyboardTimePicker
           margin="normal"
           id="time-picker"
-          label="Time picker"
+          label="Chọn giờ"
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{

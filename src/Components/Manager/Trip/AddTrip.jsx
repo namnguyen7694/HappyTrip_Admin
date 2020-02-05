@@ -36,7 +36,7 @@ class AddTrip extends Component {
       company: "",
       ListCar: [],
       carType: "",
-      startTime: new Date(),
+      startTime: "",
       price: "",
       error: {}
     };
@@ -112,7 +112,7 @@ class AddTrip extends Component {
     } = this.state;
     return (
       <div className="add_station">
-        <h1 className="title_addnew">Add Trip</h1>
+        <h1 className="title_addnew">Thêm chuyến đi</h1>
         <form autoComplete="off" onSubmit={this.onSubmit}>
           <div>
           {_.get(this.state, "error.response.data.fromStation") && (
@@ -121,7 +121,7 @@ class AddTrip extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>From Station</InputLabel>
+              <InputLabel>Điểm xuất phát</InputLabel>
               <Select
                 name="fromStation"
                 value={fromStation}
@@ -150,7 +150,7 @@ class AddTrip extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>To Station</InputLabel>
+              <InputLabel>Điểm đến</InputLabel>
               <Select
                 name="toStation"
                 value={toStation}
@@ -179,7 +179,7 @@ class AddTrip extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Company</InputLabel>
+              <InputLabel>Nhà xe</InputLabel>
               <Select
                 name="company"
                 value={company}
@@ -208,7 +208,7 @@ class AddTrip extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Select Car Type</InputLabel>
+              <InputLabel>Loại ghế ngồi</InputLabel>
               <Select
                 name="carType"
                 value={carType}
@@ -237,7 +237,7 @@ class AddTrip extends Component {
               id="price"
               name="price"
               value={price}
-              label="Price"
+              label="Giá vé"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}
@@ -252,14 +252,14 @@ class AddTrip extends Component {
             style={{ margin: "15px" }}
             onClick={() => this.onSubmit}
           >
-            Save Trip
+            Lưu
           </Button>
           <Button
             variant="contained"
             style={{ margin: "15px" }}
             onClick={() => this.props.history.push("./")}
           >
-            Cancel
+            Hủy
           </Button>
         </form>
       </div>

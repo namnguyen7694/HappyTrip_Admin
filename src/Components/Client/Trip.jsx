@@ -16,7 +16,7 @@ class TripList extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1 className="title_addnew">Trips List</h1>
+              <h1 className="title_addnew">Danh sách chuyến đi</h1>
               
               {this.props.trips.map((trip, index) => {
                 return (

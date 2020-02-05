@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getTickets, deleteTicket} from '../../../Actions/ticket';
+import {getMyTickets, deleteMyTicket} from '../../Actions/ticket';
 import SingleTicket from './SingleTicket';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 class Ticket extends Component {
 
     componentDidMount() {
-        this.props.getTickets()
+        this.props.getMyTickets()
     }
 
     render() {
@@ -16,10 +16,10 @@ class Ticket extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1 className="title_addnew">QUẢN LÝ VÉ XE</h1>
+              <h1>Tickets Manager</h1>
                 {this.props.tickets.map((ticket, index) => {
                     return (
-                    <SingleTicket ticket={ticket} key= {index} deleteTicket={this.props.deleteTicket} />
+                    <SingleTicket ticket={ticket} key= {index} deleteMyTicket={this.props.deleteMyTicket} />
                     )
                 })}
               
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getTickets, deleteTicket})(Ticket)
+export default connect(mapStateToProps, {getMyTickets, deleteMyTicket})(Ticket)

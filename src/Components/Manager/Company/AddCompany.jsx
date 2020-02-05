@@ -24,9 +24,10 @@ const MenuProps = {
 };
 
 const ListCar = [
-    "Limousine",
-    "VIP",
-    "Regular"
+    "Ghế ngồi VIP 8 chỗ",
+    "Giường nằm VIP 20 chỗ",
+    "Ghế ngồi thường 16 chỗ",
+    "Ghế ngồi thường 40 chỗ"
 ]
 
 class AddCompany extends Component {
@@ -70,7 +71,7 @@ class AddCompany extends Component {
     const { name, carType, stations, image, List } = this.state;
     return (
       <div className="add_station">
-        <h1 className="title_addnew">Add Company</h1>
+        <h1 className="title_addnew">THÊM NHÀ XE</h1>
         <form autoComplete="off" onSubmit={this.onSubmit}>
           <div>
             {_.get(this.state, "error.response.data.name") && (
@@ -82,7 +83,7 @@ class AddCompany extends Component {
               id="name"
               name="name"
               value={name}
-              label="Company Name"
+              label="Tên nhà xe"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}
@@ -94,7 +95,7 @@ class AddCompany extends Component {
               id="image"
               name="image"
               value={image}
-              label="Company image"
+              label="Link hình ảnh"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}
@@ -108,7 +109,7 @@ class AddCompany extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Select Car Type</InputLabel>
+              <InputLabel>Loại ghế ngồi</InputLabel>
               <Select
                 multiple
                 name="carType"
@@ -130,7 +131,7 @@ class AddCompany extends Component {
 
           <div>
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Select Stations</InputLabel>
+              <InputLabel>Chọn bến xe</InputLabel>
               <Select
                 multiple
                 name="stations"
@@ -161,14 +162,14 @@ class AddCompany extends Component {
             style={{ margin: "15px" }}
             onClick={() => this.onSubmit}
           >
-            Save Company
+            Lưu
           </Button>
           <Button
             variant="contained"
             style={{ margin: "15px" }}
             onClick={() => this.props.history.push("./")}
           >
-            Cancel
+            Hủy
           </Button>
         </form>
       </div>

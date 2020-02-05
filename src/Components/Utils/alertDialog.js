@@ -20,7 +20,7 @@ export default function AlertDialog(props) {
   return (
     <div>
       <Button size="small" variant="contained" color="secondary" onClick={handleClickOpen}>
-        {`Delete ${props.type}`}
+        {`Xóa ${props.type}`}
       </Button>
       <Dialog
         open={open}
@@ -28,18 +28,21 @@ export default function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Are you sure to delete?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`Bạn có chắc chắn muốn xóa ${props.type}`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            This can not recover the content.
+            {`Thông tin ${props.type} sẽ bị xóa và không thể khôi phục được`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Disagree
+            Hủy
           </Button>
-          <Button onClick={() => props.deleteAction(props.id)} color="primary" autoFocus>
-            Agree
+          <Button onClick={() => {
+            handleClose ();
+            props.deleteAction(props.id)
+            }} color="primary" autoFocus>
+            Xác nhận
           </Button>
         </DialogActions>
       </Dialog>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Login from './Components/Auth/Login'
+import Login from './Components/Auth/Login';
+import SignUp from './Components/Auth/SignUp';
+import Sidebar from './Components/Manager/SideBar';
 import Navbar from './Components/Navbar';
 import './App.css';
 import Manager from './Components/Manager';
@@ -11,7 +13,7 @@ import AdminRoute from './Components/Utils/AdminRoute';
 import ClientRoute from './Components/Utils/ClientRoute';
 import isAuthenticate from './Components/Utils/isAuthenticate';
 import Profile from './Components/Profile';
-import User from './Components/Manager/User';
+import User from './Components/Manager/User/User';
 import Station from './Components/Manager/Station/Station';
 import AddStation from './Components/Manager/Station/AddStation';
 import EditStation from './Components/Manager/Station/EditStation';
@@ -22,9 +24,9 @@ import Trip from './Components/Manager/Trip/Trip';
 import AddTrip from './Components/Manager/Trip/AddTrip';
 import EditTrip from './Components/Manager/Trip/EditTrip';
 import Ticket from './Components/Manager/Ticket/Ticket';
-import Explore from './Components/Client/Explore'
-import BookingTicket from './Components/Client/BookingTicket';
+import Explore from './Components/Client/Explore';
 import NotFound from './Components/Utils/NotFound'
+import TicketManager from './Components/Client/TicketManager';
 
 class App extends Component {
   constructor(props) {
@@ -41,10 +43,11 @@ class App extends Component {
     return (
       <div className="App">
       <BrowserRouter>
-        {isAuthenticate &&  <Navbar {...this.props}/>}
+        { (isAuthenticate && profile.userType ==='admin') && <Sidebar {...this.props}/>}
+        { (isAuthenticate && profile.userType ==='client') && <Navbar {...this.props}/>}
         <Switch>
           <Route path='/' exact render= {(props) => {
-            if (isAuthenticate && profile.userType ==='admin') return <Redirect to='/manager'/>;
+            if (isAuthenticate && profile.userType ==='admin') return <Redirect to='/manager/trips'/>;
             if (isAuthenticate && profile.userType ==='client') return <Explore {...props}/>;
             return <Redirect to='/login'/>
           }}
@@ -67,7 +70,8 @@ class App extends Component {
           <AdminRoute path = '/manager/trips/addtrip' exact component = {AddTrip}/>
           <AdminRoute path = '/manager/trips/:id/edittrip' exact component = {EditTrip}/>
           <AdminRoute path = '/manager/users' exact component = {User}/>
-          <ClientRoute path = '/bookticket/:tripId' exact component = {BookingTicket}/>
+          <ClientRoute path = '/ticketmanager' exact component = {TicketManager}/>
+          <Route path = '/signup' component = {SignUp}/>
           <Route path = '/*' component = {NotFound}/>
           <Route path = '/notfound' component = {NotFound}/>
         </Switch>

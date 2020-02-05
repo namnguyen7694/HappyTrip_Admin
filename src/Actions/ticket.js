@@ -1,5 +1,5 @@
-import api from '../Api';
-import * as types from './actionConstant';
+import api from "../Api";
+import * as types from "./actionConstant";
 
 export const getTickets = () => dispatch => {
   return api
@@ -7,6 +7,19 @@ export const getTickets = () => dispatch => {
     .then(res => {
       dispatch({
         type: types.GET_TICKETS,
+        payload: res.data
+      });
+      Promise.resolve(res.data);
+    })
+    .catch(err => Promise.reject(err));
+};
+
+export const getMyTickets = () => dispatch => {
+  return api
+    .get("/tickets/myticket")
+    .then(res => {
+      dispatch({
+        type: types.GET_MYTICKETS,
         payload: res.data
       });
       Promise.resolve(res.data);
@@ -28,7 +41,19 @@ export const createTicket = data => dispatch => {
 };
 
 export const cancelBooking = () => dispatch => {
-    dispatch({
-      type: types.CANCEL_BOOKING
-    })
-  }
+  dispatch({
+    type: types.CANCEL_BOOKING
+  });
+};
+
+export const deleteTicket = (id) => (dispatch) => {
+  api.delete(`/tickets/${id}`).then(() => {
+    dispatch(getTickets());
+  });
+};
+
+export const deleteMyTicket = (id) => (dispatch) => {
+  api.delete(`/tickets/${id}`).then(() => {
+    dispatch(getMyTickets());
+  });
+};

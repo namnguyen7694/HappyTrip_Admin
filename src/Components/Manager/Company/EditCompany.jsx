@@ -24,9 +24,10 @@ const MenuProps = {
 };
 
 const ListCar = [
-    "Limousine",
-    "VIP",
-    "Regular"
+  "Ghế ngồi VIP 8 chỗ",
+  "Giường nằm VIP 20 chỗ",
+  "Ghế ngồi thường 16 chỗ",
+  "Ghế ngồi thường 40 chỗ"
 ]
 
 class EditCompany extends Component {
@@ -85,7 +86,7 @@ class EditCompany extends Component {
     const { name, carType, stations, List, image } = this.state;
     return (
       <div className="add_station">
-        <h1>Edit Company</h1>
+        <h1 className="title_addnew">CHỈNH SỬA NHÀ XE</h1>
         <form autoComplete="off" onSubmit={this.onSubmit}>
           <div>
             {_.get(this.state, "error.response.data.name") && (
@@ -97,7 +98,7 @@ class EditCompany extends Component {
               id="name"
               name="name"
               value={name}
-              label="Company Name"
+              label="Tên nhà xe"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}
@@ -109,7 +110,7 @@ class EditCompany extends Component {
               id="image"
               name="image"
               value={image}
-              label="Company image"
+              label="Link hình ảnh"
               variant="outlined"
               style={{ margin: "15px", width: "40%" }}
               onChange={this.onChange}
@@ -123,7 +124,7 @@ class EditCompany extends Component {
               />
             )}
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Select Car Type</InputLabel>
+              <InputLabel>Loại ghế ngồi</InputLabel>
               <Select
                 multiple
                 name="carType"
@@ -145,7 +146,7 @@ class EditCompany extends Component {
 
           <div>
             <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
-              <InputLabel>Select Stations</InputLabel>
+              <InputLabel>Chọn bến xe</InputLabel>
               <Select
                 multiple
                 name="stations"
@@ -176,14 +177,14 @@ class EditCompany extends Component {
             style={{ margin: "15px" }}
             onClick={() => this.onSubmit}
           >
-            Save Company
+            Lưu
           </Button>
           <Button
             variant="contained"
             style={{ margin: "15px" }}
             onClick={() => this.props.history.push("./../")}
           >
-            Cancel
+            Hủy
           </Button>
         </form>
       </div>

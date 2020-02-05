@@ -17,11 +17,11 @@ class Company extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1 className="title_addnew">Company Manager</h1>
+              <h1 className="title_addnew">QUẢN LÝ NHÀ XE</h1>
               <Button variant="contained" color="primary"
                 onClick={() => this.props.history.push("/manager/companies/addcompany")}
               >
-                Add New Company
+                Thêm Nhà xe
              </Button>
                 {this.props.companies.map((company, index) => {
                     return (

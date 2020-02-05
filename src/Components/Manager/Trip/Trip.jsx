@@ -17,7 +17,7 @@ class Trip extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1 className="title_addnew">Trips Manager</h1>
+              <h1 className="title_addnew">QUẢN LÝ CHUYẾN ĐI</h1>
               <Button
                 variant="contained"
                 color="primary"
@@ -25,7 +25,7 @@ class Trip extends Component {
                   this.props.history.push("/manager/trips/addtrip")
                 }
               >
-                Create Trip
+                Thêm chuyến đi
               </Button>
               {this.props.trips.map((trip, index) => {
                 return (

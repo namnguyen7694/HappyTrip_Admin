@@ -5,6 +5,9 @@ const ticketReducer = ( state = initialState, action) => {
         case "GET_TICKETS":
             return action.payload
 
+        case "GET_MYTICKETS":
+            return action.payload
+
         case "CREATE_TICKET":
             return [...state, action.payload]
             

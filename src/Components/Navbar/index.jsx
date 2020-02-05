@@ -22,14 +22,12 @@ class Navbar extends Component {
                 alt="logo"
               />
             </IconButton>
-            <Typography variant="h6" style={{ marginRight: "15px" }}>
-              {isAuthenticate ? "Da dang nhap" : "Chua dang nhap"}
-            </Typography>
             <Typography variant="h6">
-              <Link to="/profile">{isAuthenticate ? profile.fullName : ""}</Link>
+              Chào mừng <Link to="/profile">{isAuthenticate ? profile.fullName : ""}</Link>
             </Typography>
 
             {isAuthenticate && (
+              <div style={{marginLeft : "auto"}}>
               <Button
                 color="inherit"
                 onClick={() => {
@@ -37,8 +35,9 @@ class Navbar extends Component {
                   this.props.history.push("/");
                 }}
               >
-                Logout
+                Đăng xuất
               </Button>
+              </div>
             )}
           </Toolbar>
         </AppBar>
@@ -47,10 +46,4 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.auth //state "auth" from Store --> return to Props "auth"
-  };
-};
-
-export default withRouter(connect(mapStateToProps, { logout })(Navbar));
+export default withRouter(connect(null, { logout })(Navbar));
