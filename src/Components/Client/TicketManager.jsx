@@ -16,7 +16,7 @@ class Ticket extends Component {
           <React.Fragment>
             <CssBaseline />
             <Container maxWidth="md">
-              <h1>Tickets Manager</h1>
+            <h1 className="title_addnew">DANH SÁCH VÉ XE ĐÃ ĐẶT</h1>
                 {this.props.tickets.map((ticket, index) => {
                     return (
                     <SingleTicket ticket={ticket} key= {index} deleteMyTicket={this.props.deleteMyTicket} />

@@ -55,7 +55,7 @@ class SignUp extends Component {
           alignItems="flex-end"
         >
           <Grid item xs={8} sm={6} md={4}>
-            <Paper style={{ backgroundColor: "#c4d6d4a8" }}>
+            <Paper style={{ backgroundColor: "#dee6e5cc" }}>
               <h1>Chào mừng bạn đến với VEXERE.COM</h1>
               <h3>Đăng ký tài khoản mới</h3>
               <form autoComplete="off">

@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { withRouter } from "react-router-dom";
+import {Link, withRouter } from "react-router-dom";
 import AlertDialog from "../../Utils/alertDialog";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -17,7 +17,14 @@ const useStyles = makeStyles({
   },
 
   title: {
-    color: "#6b8a78"
+    color: "#6b8a78",
+    textDecoration: "none",
+    fontSize : "24px"
+  },
+  link: {
+    color: "#767b06d6",
+    textDecoration: "none",
+    fontSize : "16px"
   },
   image: {
     width: 200,
@@ -39,9 +46,9 @@ const SimpleCard = props => {
       <CardContent>
         <Grid container direction="row" justify="space-evenly" alignItems="flex-start">
           <Grid item md={6}>
-            <Typography variant="h5" className={classes.title} gutterBottom>
+            <Link to={`/manager/stations/${station._id}`} className={classes.title}>
               {station.name}
-            </Typography>
+            </Link>
             <Typography color="textSecondary">
               Địa chỉ : {station.address}
             </Typography>
@@ -66,7 +73,9 @@ const SimpleCard = props => {
               {station.companies.map((com, index) => {
                 return (
                   <Typography key={index} color="textSecondary">
+                    <Link to={`/manager/companies/${com._id}`} className={classes.link}>
                     {com.name}
+                    </Link>
                   </Typography>
                 );
               })}

@@ -7,8 +7,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import SelectSeats from "./SelectSeats";
-import InformationForm from './informationForm';
+import InformationForm from "./informationForm";
 import { createTicket, cancelBooking } from "./../../Actions/ticket";
+import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,9 +41,29 @@ function getStepContent(stepIndex, props) {
         />
       );
     case 1:
-      return <InformationForm info={props.info} setInfo={props.setInfo}/>;
+      return <InformationForm info={props.info} setInfo={props.setInfo} />;
     case 2:
-      return "This is the bit I really care about!";
+      const totalPrice = props.seatCodes.length * props.trip.price;
+      return (
+        <div>
+          <Typography>
+            Vui lòng kiểm tra thông tin ghế và tổng số tiền trước khi xác nhận
+            thanh toán!
+          </Typography>
+          <Typography variant="h6">
+            Mã số ghế: {props.seatCodes.join(", ")}
+          </Typography>
+          <Typography variant="h6">
+            Tổng số tiền:
+            <NumberFormat
+              value={totalPrice}
+              displayType={"text"}
+              thousandSeparator={true}
+              suffix={" VND"}
+            />
+          </Typography>
+        </div>
+      );
     default:
       return "Unknown stepIndex";
   }

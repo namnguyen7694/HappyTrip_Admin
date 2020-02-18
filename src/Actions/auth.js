@@ -63,6 +63,30 @@ export const getUsers = () => (dispatch) => {
         .catch(err => Promise.reject(err))
 }
 
+export const getUserById = (id) => (dispatch) => {
+    return api.get(`users/${id}`)
+        .then(res => {
+            dispatch({
+                type: types.GET_USERBYID,
+                payload: res.data
+            });
+            
+            Promise.resolve(res.data)
+        })
+        .catch(err => Promise.reject(err))
+}
+export const updateUser = (data) => (dispatch) => {
+    return api.put(`/users/updatemyprofile`, data)
+       .then(res => {
+           dispatch({
+               type: types.SET_CURRENT_USER,
+               payload: res.data
+           })
+           Promise.resolve(res.data)
+       })
+       .catch(err => Promise.reject(err))
+}
+
 export const deleteUser = (id) => (dispatch) => {
     return api.delete(`/users/${id}`)
         .then(() => {

@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { withRouter } from "react-router-dom";
+import {Link, withRouter } from "react-router-dom";
 import AlertDialog from "../../Utils/alertDialog";
 import Grid from "@material-ui/core/Grid";
 
@@ -15,7 +15,9 @@ const useStyles = makeStyles({
   },
 
   title: {
-    color: "#6b8a78"
+    color: "#6b8a78",
+    textDecoration: "none",
+    fontSize : "24px"
   },
   image: {
     width: 200,
@@ -36,9 +38,9 @@ const SimpleCard = props => {
     <Card className={classes.card}>
       <CardContent>
         <Grid container direction="row" justify="space-evenly" alignItems="flex-start">
-            <Typography variant="h5" className={classes.title} gutterBottom>
+            <Link to={`/manager/users/${user._id}`} className={classes.title}>
               Họ tên: {user.fullName}
-            </Typography>
+            </Link>
             <Typography variant="h6" gutterBottom>
               Email: {user.email}
             </Typography>
@@ -46,16 +48,6 @@ const SimpleCard = props => {
         </Grid>
       </CardContent>
       <CardActions >
-        {/* <Button
-          size="small"
-          variant="contained"
-          style={{ marginLeft: "auto" }}
-          onClick={() =>
-            props.history.push(`/manager/companies/${company._id}/editcompany`)
-          }
-        >
-          Chỉnh sửa
-        </Button> */}
         <div style={{ marginLeft: "auto" }}> 
         <AlertDialog
           id={user._id}

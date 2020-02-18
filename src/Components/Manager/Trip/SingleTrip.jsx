@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import AlertDialog from "../../Utils/alertDialog";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -19,7 +19,14 @@ const useStyles = makeStyles({
   },
 
   title: {
-    color: "#6b8a78"
+    color: "#6b8a78",
+    textDecoration: "none",
+    fontSize : "24px"
+  },
+  link: {
+    color: "#767b06d6",
+    textDecoration: "none",
+    fontSize : "16px"
   },
   image: {
     width: 200,
@@ -46,11 +53,16 @@ const SimpleCard = props => {
           alignItems="flex-start"
         >
           <Grid item md={6}>
-            <Typography variant="h5" className={classes.title} gutterBottom>
+            <Link to={`/manager/trips/${trip._id}`} className={classes.title}>
               {trip.fromStation.province} - {trip.toStation.province}
-            </Typography>
+            </Link>
             <Typography variant="h6" gutterBottom>
-              {trip.company.name}
+              <Link
+                to={`/manager/companies/${trip.company._id}`}
+                className={classes.link}
+              >
+                {trip.company.name}
+              </Link>
             </Typography>
             <Typography color="textSecondary">{trip.carType}</Typography>
             <ButtonBase className={classes.image}>
@@ -67,10 +79,22 @@ const SimpleCard = props => {
           </Grid>
           <Grid item md={6}>
             <Typography color="textPrimary">
-              Điểm xuất phát : {trip.fromStation.name}
+              Điểm xuất phát :{" "}
+              <Link
+                to={`/manager/stations/${trip.fromStation._id}`}
+                className={classes.link}
+              >
+                {trip.fromStation.name}
+              </Link>
             </Typography>
             <Typography color="textPrimary">
-              Điểm đến : {trip.toStation.name}
+              Điểm đến :{" "}
+              <Link
+                to={`/manager/stations/${trip.toStation._id}`}
+                className={classes.link}
+              >
+                {trip.toStation.name}
+              </Link>
             </Typography>
             <Typography color="textPrimary">
               Giá vé :{" "}
@@ -82,18 +106,12 @@ const SimpleCard = props => {
               />
             </Typography>
             <Typography color="textPrimary">
-              Giờ khởi hành: <Moment format=" HH:mm DD/MM/YYYY">{trip.startTime}</Moment>
+              Giờ khởi hành:{" "}
+              <Moment format=" HH:mm DD/MM/YYYY">{trip.startTime}</Moment>
             </Typography>
             <Typography color="textSecondary">
               Số ghế trống: {trip.seats.filter(e => !e.isBooked).length} /{" "}
               {trip.seats.length}
-            </Typography>
-            <Typography color="textSecondary">
-              Ghế trống:{" "}
-              {trip.seats
-                .filter(e => !e.isBooked)
-                .map(e => e.code)
-                .join(", ")}
             </Typography>
           </Grid>
         </Grid>

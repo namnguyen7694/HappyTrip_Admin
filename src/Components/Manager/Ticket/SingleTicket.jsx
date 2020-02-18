@@ -1,5 +1,6 @@
 import React from "react";
-import _ from 'lodash'
+import _ from 'lodash';
+import {Link} from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -15,10 +16,15 @@ const useStyles = makeStyles({
   },
 
   title: {
-    fontSize: 18
+    color: "#6b8a78",
+    textDecoration: "none",
+    fontSize : "24px"
   },
   pos: {
-    marginBottom: 12
+    color: "#b10e0ec7",
+    textDecoration: "none",
+    display: "block",
+    fontSize : "20px"
   }
 });
 
@@ -28,9 +34,17 @@ export default function SimpleCard(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography className={classes.pos} color="textPrimary">
+        
+           <Link to={`/manager/tickets/${ticket._id}`} className={classes.pos}>
+           Mã số vé: {_.get(ticket, "_id", "Khác") }
+          </Link> 
+           <Link to={`/manager/trips/${ticket.tripId._id}`} className={classes.pos}>
+           Mã chuyến đi: {_.get(ticket, "tripId._id", "Khác") }
+          </Link> 
+        
+        <Link to={`/manager/users/${ticket.userId._id}`} className={classes.title} color="textPrimary">
           Người đặt vé: {_.get(ticket, "userId.fullName", "Khác") }
-        </Typography>
+        </Link>
         <Typography variant="h6" color="textSecondary">
           Mã số ghế: {ticket.seats.map(seat => seat.code).join(", ")}
         </Typography>

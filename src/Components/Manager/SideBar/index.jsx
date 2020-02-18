@@ -25,7 +25,7 @@ import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 import Button from "@material-ui/core/Button";
 import {logout} from '../../../Actions/auth';
  
-const drawerWidth = 300;
+const drawerWidth = 250;
 
 const useStyles = makeStyles(theme => ({
   root: {

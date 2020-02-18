@@ -3,6 +3,8 @@ const initialState = {
   stationEditing: {},
   companyEditing: {},
   tripEditing: {},
+  userEditing: {},
+  ticketEditing: {},
   adviceCompany: []
 };
 
@@ -16,6 +18,12 @@ const layoutReducer = (state = initialState, action) => {
 
     case types.GET_TRIPBYID:
       return { ...state, tripEditing: action.payload };
+
+    case types.GET_TICKETBYID:
+      return { ...state, ticketEditing: action.payload };
+
+    case types.GET_USERBYID:
+      return { ...state, userEditing: action.payload };
 
     case types.CANCEL_BOOKING:
       return { ...state, tripEditing: {} };

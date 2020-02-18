@@ -14,6 +14,19 @@ export const getTickets = () => dispatch => {
     .catch(err => Promise.reject(err));
 };
 
+export const getTicketById = (id) => dispatch => {
+  return api
+    .get(`/tickets/${id}`)
+    .then(res => {
+      dispatch({
+        type: types.GET_TICKETBYID,
+        payload: res.data
+      });
+      Promise.resolve(res.data);
+    })
+    .catch(err => Promise.reject(err));
+};
+
 export const getMyTickets = () => dispatch => {
   return api
     .get("/tickets/myticket")
