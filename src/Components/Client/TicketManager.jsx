@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getMyTickets, deleteMyTicket} from '../../Actions/ticket';
+import {getTickets, deleteTicket} from '../../Actions/ticket';
+import {getTripByIdClient} from '../../Actions/trip';
 import SingleTicket from './SingleTicket';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
 class Ticket extends Component {
-
     componentDidMount() {
-        this.props.getMyTickets()
+        this.props.getTickets()
     }
 
     render() {
@@ -17,9 +17,9 @@ class Ticket extends Component {
             <CssBaseline />
             <Container maxWidth="md">
             <h1 className="title_addnew">DANH SÁCH VÉ XE ĐÃ ĐẶT</h1>
-                {this.props.tickets.map((ticket, index) => {
+                {this.props.tickets.filter(ticket => ticket.userId._id === this.props.user.userId).map((ticket, index) => {
                     return (
-                    <SingleTicket ticket={ticket} key= {index} deleteMyTicket={this.props.deleteMyTicket} />
+                    <SingleTicket ticket={ticket} key= {index} getTrip={this.props.getTripByIdClient} deleteTicket={this.props.deleteTicket} />
                     )
                 })}
               
@@ -31,8 +31,9 @@ class Ticket extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        tickets: state.tickets
+        tickets: state.tickets,
+        user: state.auth.profile
     }
 }
 
-export default connect(mapStateToProps, {getMyTickets, deleteMyTicket})(Ticket)
+export default connect(mapStateToProps, {getTickets, deleteTicket, getTripByIdClient})(Ticket)

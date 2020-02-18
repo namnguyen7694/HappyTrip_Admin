@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -11,27 +10,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Booking from './Booking';
 import NumberFormat from 'react-number-format';
 import Moment from 'react-moment';
-
-const useStyles = makeStyles({
-  card: {
-    minWidth: 275,
-    margin: 20 
-  },
- 
-  title: {
-    color: "#6b8a78"
-  },
-  image: {
-    width: 200,
-    height: 160
-  },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%"
-  }
-});
+import useStyles from '../Utils/style';
 
 const SimpleCard = (props) => {
   const classes = useStyles();
@@ -49,7 +28,7 @@ const SimpleCard = (props) => {
             <Typography variant="h5" className={classes.title} gutterBottom>
               {trip.fromStation.province} - {trip.toStation.province}
             </Typography>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom className={classes.link}>
               {trip.company.name}
             </Typography>
             <ButtonBase className={classes.image}>
@@ -65,13 +44,7 @@ const SimpleCard = (props) => {
             </ButtonBase>
           </Grid>
           <Grid item md={6}>
-            <Typography color="textPrimary">
-              Điểm xuất phát : {trip.fromStation.name}
-            </Typography>
-            <Typography color="textPrimary">
-              Điểm đến : {trip.toStation.name}
-            </Typography>
-            <Typography color="textPrimary">
+          <Typography variant="h6" color="primary">
               Giá vé :{" "}
               <NumberFormat
                 value={trip.price}
@@ -79,6 +52,12 @@ const SimpleCard = (props) => {
                 thousandSeparator={true}
                 suffix={" VND"}
               />
+            </Typography>
+            <Typography color="textPrimary" className={classes.link}>
+              Điểm xuất phát : {trip.fromStation.name}
+            </Typography>
+            <Typography color="textPrimary" className={classes.link}>
+              Điểm đến : {trip.toStation.name}
             </Typography>
             <Typography color="textPrimary">
               Giờ khởi hành:{" "}

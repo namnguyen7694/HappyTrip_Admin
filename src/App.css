@@ -59,3 +59,8 @@
 .title_addnew {
   color : #279093
 }
+
+.content__grid {
+  text-align: start;
+  padding-left: 40px;
+}

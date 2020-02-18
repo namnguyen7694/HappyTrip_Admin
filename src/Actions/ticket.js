@@ -27,19 +27,6 @@ export const getTicketById = (id) => dispatch => {
     .catch(err => Promise.reject(err));
 };
 
-export const getMyTickets = () => dispatch => {
-  return api
-    .get("/tickets/myticket")
-    .then(res => {
-      dispatch({
-        type: types.GET_MYTICKETS,
-        payload: res.data
-      });
-      Promise.resolve(res.data);
-    })
-    .catch(err => Promise.reject(err));
-};
-
 export const createTicket = data => dispatch => {
   return api
     .post("/tickets/booking", data)
@@ -65,8 +52,3 @@ export const deleteTicket = (id) => (dispatch) => {
   });
 };
 
-export const deleteMyTicket = (id) => (dispatch) => {
-  api.delete(`/tickets/${id}`).then(() => {
-    dispatch(getMyTickets());
-  });
-};

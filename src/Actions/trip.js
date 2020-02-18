@@ -25,6 +25,15 @@ export const getTripById = (id) => (dispatch) => {
         .catch(err => Promise.reject(err))
 }
 
+export const getTripByIdClient = (id) => (dispatch) => {
+    return api.get(`/trips/${id}`)
+        .then(res => {
+            dispatch({ type: types.GET_TRIPBYID, payload: res.data });
+            Promise.resolve(res.data);
+        })
+        .catch(err => Promise.reject(err))
+}
+
 export const createTrip = (data) => (dispatch) => {
     return api.post('/trips', data)
         .then(res => {

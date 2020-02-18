@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import { getTicketById, deleteTicket } from "../../../Actions/ticket";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
+import classes from '../../Utils/classes.json';
 
 class TicketById extends Component {
   constructor(props) {
@@ -20,31 +22,7 @@ class TicketById extends Component {
       ticket: {}
     };
   }
-  classes = {
-    card: {
-      minWidth: 275,
-      margin: 20
-    },
-
-    title: {
-      color: "#6b8a78"
-    },
-    link: {
-      color: "#767b06d6",
-      textDecoration: "none",
-      fontSize: "16px"
-    },
-    image: {
-      width: 200,
-      height: 160
-    },
-    img: {
-      margin: "auto",
-      display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%"
-    }
-  };
+  classes = classes;
 
   deleteTicket = id => {
     this.props.deleteTicket(id);
@@ -70,7 +48,7 @@ class TicketById extends Component {
               justify="space-evenly"
               alignItems="flex-start"
             >
-              <Grid item md={6}>
+              <Grid item md={6} className="content__grid">
                 <Typography
                   variant="h5"
                   style={this.classes.title}
@@ -88,12 +66,18 @@ class TicketById extends Component {
                 <Typography color="textSecondary">
                   Loại ghế ngồi : {_.get(ticket[1], "carType", "")}
                 </Typography>
-              </Grid>
-              <Grid item md={6}>
-                <Typography color="textSecondary">
+                <Typography style={{ marginTop: "16px" }} color="textPrimary">
                   Người đặt vé :{" "}
-                  {_.get(ticket[0], "userId.fullName", "")} -  {_.get(ticket[0], "userId.email", "")}
+                  <Link style={this.classes.link} to={`/manager/users/${_.get(ticket[0], "userId._id", "")}`}>
+                  {_.get(ticket[0], "userId.fullName", "")}
+                  </Link> 
                 </Typography>
+                <Typography color="textPrimary">
+                  Email :{" "}
+                  {_.get(ticket[0], "userId.email", "")}
+                </Typography>
+              </Grid>
+              <Grid item md={6} className="content__grid">
                 <Typography color="textSecondary">
                   Mã số ghế :{" "}
                   {_.get(ticket[0], "seats", [])
@@ -109,7 +93,7 @@ class TicketById extends Component {
                     suffix={" VND"}
                   />
                 </Typography>
-                <Typography color="textPrimary">
+                <Typography variant="h6" color="textPrimary">
                   Tổng tiền vé :{" "}
                   <NumberFormat
                     value={_.get(ticket[0], "totalPrice")}
@@ -118,6 +102,15 @@ class TicketById extends Component {
                     suffix={" VND"}
                   />
                 </Typography>
+                <Typography style={{ marginTop: "16px" }} color="textPrimary">
+                Số điện thoại : {_.get(ticket[0], "phone", "")}
+              </Typography>
+              <Typography color="textPrimary">
+                Địa chỉ : {_.get(ticket[0], "address", "")}
+              </Typography>
+              <Typography color="textPrimary">
+                Ghi chú : {_.get(ticket[0], "note", "")}
+              </Typography>
               </Grid>
             </Grid>
           </CardContent>

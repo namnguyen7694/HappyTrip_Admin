@@ -8,6 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
+import Chip from "@material-ui/core/Chip";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { createStation } from "../../../Actions/station";
@@ -127,7 +128,7 @@ class AddStation extends Component {
             />
           </div>
           <div>
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{ margin: "15px", width: "40%" }}>
               <InputLabel>Chọn Nhà xe</InputLabel>
               <Select
                 multiple
@@ -135,11 +136,19 @@ class AddStation extends Component {
                 value={companies}
                 onChange={this.onChange}
                 input={<Input />}
-                renderValue={selected => {
-                  return List.filter(com => selected.indexOf(com._id) > -1)
-                    .map(com => com.name)
-                    .join(", ");
-                }}
+                renderValue={selected => (
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {List.filter(com => selected.indexOf(com._id) > -1).map(
+                      com => (
+                        <Chip
+                          key={com._id}
+                          label={com.name}
+                          style={{ margin: 2 }}
+                        />
+                      )
+                    )}
+                  </div>
+                )}
                 MenuProps={MenuProps}
               >
                 {List.map(company => (

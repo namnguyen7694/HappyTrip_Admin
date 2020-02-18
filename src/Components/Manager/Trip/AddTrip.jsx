@@ -120,7 +120,7 @@ class AddTrip extends Component {
                 error={_.get(this.state, "error.response.data.fromStation", "")}
               />
             )}
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{  margin: "15px", width: "30%" }}>
               <InputLabel>Điểm xuất phát</InputLabel>
               <Select
                 name="fromStation"
@@ -149,7 +149,7 @@ class AddTrip extends Component {
                 error={_.get(this.state, "error.response.data.toStation", "")}
               />
             )}
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{  margin: "15px", width: "30%" }}>
               <InputLabel>Điểm đến</InputLabel>
               <Select
                 name="toStation"
@@ -178,7 +178,7 @@ class AddTrip extends Component {
                 error={_.get(this.state, "error.response.data.company", "")}
               />
             )}
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{  margin: "15px", width: "30%" }}>
               <InputLabel>Nhà xe</InputLabel>
               <Select
                 name="company"
@@ -207,7 +207,7 @@ class AddTrip extends Component {
                 error={_.get(this.state, "error.response.data.carType", "")}
               />
             )}
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{  margin: "15px", width: "30%" }}>
               <InputLabel>Loại ghế ngồi</InputLabel>
               <Select
                 name="carType"
@@ -239,7 +239,7 @@ class AddTrip extends Component {
               value={price}
               label="Giá vé"
               variant="outlined"
-              style={{ margin: "15px", width: "40%" }}
+              style={{ margin: "15px", width: "30%" }}
               onChange={this.onChange}
             />
           </div>

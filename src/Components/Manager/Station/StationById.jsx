@@ -12,6 +12,7 @@ import AlertDialog from "../../Utils/alertDialog";
 import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Container from "@material-ui/core/Container";
+import classes from '../../Utils/classes.json';
 
 class StationById extends Component {
   constructor(props) {
@@ -21,31 +22,7 @@ class StationById extends Component {
     };
   }
 
-  classes = {
-    card: {
-      minWidth: 275,
-      margin: 20
-    },
-
-    title: {
-      color: "#6b8a78"
-    },
-    link: {
-      color: "#767b06d6",
-      textDecoration: "none",
-      fontSize: "16px"
-    },
-    image: {
-      width: 200,
-      height: 160
-    },
-    img: {
-      margin: "auto",
-      display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%"
-    }
-  };
+  classes = classes;
 
   deleteStation = id => {
     this.props.deleteStation(id);

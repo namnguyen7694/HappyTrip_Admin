@@ -23,7 +23,7 @@ class Navbar extends Component {
               />
             </IconButton>
             <Typography variant="h6">
-              Chào mừng <Link to="/profile">{isAuthenticate ? profile.fullName : ""}</Link>
+              Chào mừng <Link to="/profile" style={{textDecoration: "none"}}>{isAuthenticate ? profile.fullName : ""}</Link>
             </Typography>
 
             {isAuthenticate && (

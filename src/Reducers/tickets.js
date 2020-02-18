@@ -1,14 +1,12 @@
+import * as types from '../Actions/actionConstant'
 const initialState = [];
 
 const ticketReducer = ( state = initialState, action) => {
     switch (action.type) {
-        case "GET_TICKETS":
+        case types.GET_TICKETS:
             return action.payload
 
-        case "GET_MYTICKETS":
-            return action.payload
-
-        case "CREATE_TICKET":
+        case types.CREATE_TICKET:
             return [...state, action.payload]
             
         default:

@@ -8,9 +8,10 @@ import FormControl from "@material-ui/core/FormControl";
 import ListItemText from "@material-ui/core/ListItemText";
 import Select from "@material-ui/core/Select";
 import Checkbox from "@material-ui/core/Checkbox";
+import Chip from "@material-ui/core/Chip";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { getCompanyById, updateCompany} from "../../../Actions/company";
+import { getCompanyById, updateCompany } from "../../../Actions/company";
 import { getStations } from "../../../Actions/station";
 import ErrorSnackBar from "../../Utils/errorSnackBar";
 
@@ -28,7 +29,7 @@ const ListCar = [
   "Giường nằm VIP 20 chỗ",
   "Ghế ngồi thường 16 chỗ",
   "Ghế ngồi thường 40 chỗ"
-]
+];
 
 class EditCompany extends Component {
   constructor(props) {
@@ -123,7 +124,7 @@ class EditCompany extends Component {
                 error={_.get(this.state, "error.response.data.carType", "")}
               />
             )}
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{ margin: "15px", width: "40%" }}>
               <InputLabel>Loại ghế ngồi</InputLabel>
               <Select
                 multiple
@@ -131,7 +132,13 @@ class EditCompany extends Component {
                 value={carType}
                 onChange={this.onChange}
                 input={<Input />}
-                renderValue={selected => selected.join(", ")}
+                renderValue={selected => (
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {selected.map(value => (
+                      <Chip key={value} label={value} style={{ margin: 2 }} />
+                    ))}
+                  </div>
+                )}
                 MenuProps={MenuProps}
               >
                 {ListCar.map(car => (
@@ -145,7 +152,7 @@ class EditCompany extends Component {
           </div>
 
           <div>
-            <FormControl style={{ minWidth: 200, maxWidth: 300 }}>
+            <FormControl style={{ margin: "15px", width: "40%" }}>
               <InputLabel>Chọn bến xe</InputLabel>
               <Select
                 multiple
@@ -153,11 +160,19 @@ class EditCompany extends Component {
                 value={stations}
                 onChange={this.onChange}
                 input={<Input />}
-                renderValue={selected => {
-                  return List.filter(stt => selected.indexOf(stt._id) > -1)
-                    .map(stt => stt.name)
-                    .join(", ");
-                }}
+                renderValue={selected => (
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {List.filter(stt => selected.indexOf(stt._id) > -1).map(
+                      stt => (
+                        <Chip
+                          key={stt._id}
+                          label={stt.name}
+                          style={{ margin: 2 }}
+                        />
+                      )
+                    )}
+                  </div>
+                )}
                 MenuProps={MenuProps}
               >
                 {List.map(station => (
@@ -198,6 +213,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getStations, getCompanyById, updateCompany })(
-    EditCompany
-);
+export default connect(mapStateToProps, {
+  getStations,
+  getCompanyById,
+  updateCompany
+})(EditCompany);
