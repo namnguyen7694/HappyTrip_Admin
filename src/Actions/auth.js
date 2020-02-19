@@ -24,17 +24,16 @@ export const login = (credentials) => (dispatch) => {
 };
 
 export const signup = credentials => (dispatch) => {
-  return api
-    .post("/users", credentials)
-    .then(() => {
-        dispatch( setCurrentUser(credentials));
-        return Promise.resolve({message: "Sign up success"})
-    })
-    .catch(err => Promise.reject({
-        message: "Đăng ký không thành công ",
-        err
-    }))
-};
+    return api
+      .post("/users", credentials)
+      .then(() => {
+          return Promise.resolve({message: "Đăng ký thành công, vui lòng đăng nhập để tiếp tục"})
+      })
+      .catch(err => Promise.reject({
+          message: "Đăng ký không thành công ",
+          err
+      }))
+  };
 
 export const logout = () => (dispatch) => {
     localStorage.removeItem('token');

@@ -68,15 +68,14 @@ class UserById extends Component {
                   Mã vé xe đã đặt :{" "}
                   {tickets
                     .filter(ticket => ticket.userId._id === user._id)
-                    .map(t => (
-                      <div>
+                    .map((t, key) => (
                         <Link
+                         key={key}
                           to={`/manager/tickets/${t._id}`}
                           style={classes.link}
                         >
                           {t._id}
                         </Link>
-                      </div>
                     ))}
                 </Typography>
               </Grid>

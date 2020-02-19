@@ -10,7 +10,8 @@
     "link": {
         "color": "#0b6077d6",
         "textDecoration": "none",
-        "fontSize" : "16px"
+        "fontSize" : "16px",
+        "display" : "block"
       },
     "image": {
       "width": 200,

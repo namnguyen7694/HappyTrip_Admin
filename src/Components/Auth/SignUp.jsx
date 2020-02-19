@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import _ from "lodash";
-import { signup } from "../../Actions/auth";
+import { signup, login } from "../../Actions/auth";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
@@ -34,8 +34,9 @@ class SignUp extends Component {
     this.props
       .signup({ email, password, password2, fullName })
       .then(() => {
-        this.props.history.push("./");
+        this.props.login({email, password})
       })
+      .then( () => this.props.history.push('./'))
       .catch(err => {
         this.setState({
           error: err
@@ -176,4 +177,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect(null, { signup })(SignUp);
+export default connect(null, { signup, login })(SignUp);
