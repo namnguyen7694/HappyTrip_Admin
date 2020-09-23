@@ -39,9 +39,9 @@
 }
 .login-page {
   background-image: url(https:////static.vexere.com/production/banners/330/background-ok-optimize.png);
-  height: 1200px;
+  height: 100vh;
   background-size: cover;
-  margin-top: -25px;
+  margin-top: 0;
 }
 .login-page h1 {
   padding-top: 50px;
