@@ -53,7 +53,7 @@ class Login extends Component {
         >
           <Grid item xs={8} sm={6} md={4}>
             <Paper style={{ backgroundColor: "#dee6e5cc" }}>
-              <h1>Chào mừng bạn đến với VEXERE.COM</h1>
+              <h1>Chào mừng bạn đến với HAPPYTRIP</h1>
               <h3>Đăng nhập</h3>
               <form autoComplete="off">
                 <div>
